@@ -1,6 +1,6 @@
 # Name: Joshua Lai
 # Project 1
-# Completed 2/20/2022
+# Completed 2/18/2022
 
 import math
 
