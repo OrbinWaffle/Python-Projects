@@ -12,14 +12,17 @@ def TaskOne():
          quit()
       selection = selection.upper()
       weight = str(input("Please input your weight in {0}: ".format("pounds" if selection == "I" else "kilograms")))
+      # Check that weight is a number and that it is greater than 0
       if (not weight.replace(".", "").isnumeric() or float(weight) <= 0):
          print("ERROR: Weight must be a positive, non-zero number.")
          quit()
       height = str(input("Please input your height in {0}: ".format("inches" if selection == "I" else "meters")))
+      # Check that height is a number and that it is greater than 0
       if (not height.replace(".", "").isnumeric() or float(height) <= 0):
          print("ERROR: Height must be a positive, non-zero number.")
          quit()
       bmi = float(weight)/(float(height) ** 2)
+      # If using imperial, multiply by 703
       if (selection == "I"):
          bmi *= 703
       print("Your BMI is {0:.2f}.".format(bmi))
@@ -87,23 +90,27 @@ def TaskTwo():
       input_num = eval(input_exp)
       real_solution = math.sin(input_num)
       solution = 0
-      last_fac = 1
       last_exp = input_num
       for i in range(1, 1000000):
+         # If this is the first iteration, initialize the solution to equal the input expression
          if (i == 1):
             current_exp = input_num
             solution += current_exp
             continue
+         # Factorial denominator starts at 1 and is incremented by 2 each time (1!, 3!, 5!, etc.)
          fac_demoninator = (i*2) - 1
+         # Calculate the next term in the Taylor series, which is the last term multiplied by
+         # x^2 / (last_denominator * last_denominator - 1)
          current_exp = last_exp * ((input_num ** 2) / (fac_demoninator * (fac_demoninator - 1)))
-         print(current_exp)
          last_exp = current_exp
+         # Alternate adding and subtracting
          current_exp *= -((-1) ** i)
+         # Update current solution
          solution += current_exp
+         # Once the error is small enough, break
          if(math.fabs(solution - real_solution) < min_error):
             print ("It took {0} iterations to reach the minimum required error of {1}.".format(i, min_error))
             break
-         last_fac += 2
       print("Final solution: {0}\nReal solution: {1}\n".format(solution, real_solution))
 
 # OUTPUT:
