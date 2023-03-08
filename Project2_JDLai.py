@@ -187,6 +187,9 @@ def draw_bar_code(input_code):
 
     wn.mainloop()
 
+# TASK THREE OUTPUT:
+# See pdf file
+
 
 
 # Task selector
