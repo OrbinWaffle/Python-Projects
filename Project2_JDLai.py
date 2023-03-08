@@ -3,6 +3,7 @@
 # Completed 3/7/2022
 
 import time
+from turtle import Turtle, Screen
 
 def task_one_main():
     user_input = input("Enter a sentence: ")
@@ -44,7 +45,7 @@ def get_safe(input_string, key):
 def go_recover(input_string, key):
     return get_safe(input_string, key)
 
-#task_one_main()
+
 
 def task_two_main():
     prime_generator = generate_primes(1100)
@@ -69,7 +70,6 @@ def task_two_main():
     totalTime = endTime - startTIme
     print("It took {0} seconds to run step two.".format(totalTime))
         
-
 def generate_primes(num_of_primes):
     primes_generated = 0
     index = 2
@@ -85,4 +85,79 @@ def generate_primes(num_of_primes):
             yield num_to_add
         index += 1
 
-task_two_main()
+
+
+def task_three_main():
+    zip_code = input("Please enter your zip code: ")
+    generate_bar_code(zip_code)
+
+codes = ["11000", "00011", "00101", "00110", "01001", "01010", "01100", "10001", "10010", "10100"]
+
+def generate_bar_code(input_code):
+    processed_code = input_code.replace("-", "")
+    sum = 0
+    # generate checksum
+    for character in processed_code:
+        sum += int(character)
+    checksum = 10 - (sum % 10)
+    processed_code += str(checksum)
+    
+    # use code lookup table to format the binary representation of the barcode
+    binary = "1"
+    for number in processed_code:
+        binary += codes[int(number)]
+    binary += "1"
+    draw_bar_code(binary)
+
+def draw_bar_code(input_code):
+    # set the turtle window to top
+    wn = Screen()
+    rootwindow = wn.getcanvas().winfo_toplevel()
+    rootwindow.call('wm', 'attributes', '.', '-topmost', '1')
+    rootwindow.call('wm', 'attributes', '.', '-topmost', '0')
+
+    pen = Turtle()
+    pen.hideturtle()
+    pen.speed("fastest")
+    width = len(input_code) * 10 + 10
+    xCor = -width / 2
+
+    # draw a box to surround the bar code
+    pen.pensize(5)
+    pen.setheading(0)
+    pen.up()
+    pen.setpos(xCor - 10, -40)
+    pen.down()
+    pen.forward(width)
+    pen.left(90)
+    pen.forward(80)
+    pen.left(90)
+    pen.forward(width)
+    pen.left(90)
+    pen.forward(80)
+
+    # for each digit, draw either a short or long line, then move to the right
+    pen.setheading(90)
+    for digit in input_code:
+        pen.up()
+        pen.setpos(xCor, -25)
+        pen.down()
+        if(digit == "0"):
+            pen.forward(25)
+        elif(digit == "1"):
+            pen.forward(50)
+        xCor += 10
+
+    wn.mainloop()
+
+
+
+# Task selector
+selection = int(
+   input("Which task would you like to run? Type 1, 2, or 3: "))
+if (selection == 1):
+   task_one_main()
+elif (selection == 2):
+   task_two_main()
+elif (selection == 3):
+   task_three_main()
