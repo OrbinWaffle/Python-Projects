@@ -2,7 +2,9 @@
 # Project 2
 # Completed 3/7/2022
 
-def main():
+import time
+
+def task_one_main():
     user_input = input("Enter a sentence: ")
     encryption_key = input("Enter an encryption key: ")
     num_of_chars = get_num_of_characters(user_input)
@@ -14,6 +16,7 @@ def main():
     print("Without whitespace, your sentence is:", no_whitespace)
     print("Your sentence encrypted is: ", encrypted)
     print("Your sentence decryped is: ", decrypted)
+    return
     
 
 def get_num_of_characters(input_string):
@@ -41,4 +44,45 @@ def get_safe(input_string, key):
 def go_recover(input_string, key):
     return get_safe(input_string, key)
 
-main()
+#task_one_main()
+
+def task_two_main():
+    prime_generator = generate_primes(1100)
+    print("First 50 prime numbers: ")
+    # generate 50 primes
+    for i in range(50):
+        print(next(prime_generator), end = " ")
+    print()
+    # skip 50 primes
+    for i in range(50):
+        next(prime_generator)
+    
+    startTIme = time.time()
+    # generate 101st prime
+    print("101st prime number:", next(prime_generator))
+    # skip 998 primes
+    for i in range(998):
+        next(prime_generator)
+    # generate 1001st prime
+    print("1001st prime number:", next(prime_generator))
+    endTime = time.time()
+    totalTime = endTime - startTIme
+    print("It took {0} seconds to run step two.".format(totalTime))
+        
+
+def generate_primes(num_of_primes):
+    primes_generated = 0
+    index = 2
+    while(primes_generated < num_of_primes):
+        num_to_add = index
+        # iterate over every value up to this index.
+        # if we can divide by one of these values, this number is not prime.
+        for i in range(2, index):
+            if(num_to_add % i == 0):
+                break
+        else:
+            primes_generated += 1
+            yield num_to_add
+        index += 1
+
+task_two_main()
