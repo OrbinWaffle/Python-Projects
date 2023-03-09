@@ -21,7 +21,11 @@ def task_one_main():
     
 
 def get_num_of_characters(input_string):
-    return len(input_string)
+    count = 0
+    for character in input_string:
+        count += 1
+    return count
+
 def output_without_whitespace(input_string):
     result = input_string
     result = result.replace(" ", "")
