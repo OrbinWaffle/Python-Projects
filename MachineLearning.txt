@@ -1,0 +1,1 @@
+﻿Machine Learning is making the computer learn from studying data and statistics. Machine Learning is a step into the direction of artificial intelligence. Machine Learning is a program that analyses data and learns to predict the outcome. Get ready to dive into the world of Machine Learning by using Python!
