@@ -37,6 +37,45 @@ def main_one():
     print(f"p1 + p2 * p3 = {p1 + p2 * p3}")
     print(f"p1 * p2 / p3 + p1 = {p1 * p2 / p3 + p1}")
 
+    p1 = Pair(10.5, 24.1274)
+    p2 = Pair(0, 0)
+    p3 = Pair(999, 999)
+
+    print(f"\np1 is: {p1}")
+    print(f"p2 is: {p2}")
+    print(f"p3 is: {p3}\n")
+
+    print(f"p1 + p2 + p3 = {p1 + p2 + p3}")
+    print(f"p3 * p2 = {p3 * p2}")
+    print(f"p3 / p2 / p1 / p2= {p3 / p2 / p1 / p2}")
+    print(f"p1 + p2 * p3 / p1 = {p1 + p2 * p3 / p1}")
+    print(f"p1 * p2 / p3 + p1 = {p1 * p2 / p3 + p1}")
+    
+    
+
+# TASK ONE OUTPUT:
+# p1 is: <3, 2>
+# p2 is: <1, 5>
+# p3 is: <4, 3>
+
+# p1 + p2 = <4, 7>
+# p1 * p2 = <3, 10>
+# p1 / p2 = <1, -7>
+# p1 + p2 * p3 = <7, 17>
+# p1 * p2 / p3 + p1 = <21, -16>
+
+# p1 is: <10.5, 24.1274>
+# p2 is: <0, 0>
+# p3 is: <999, 999>
+
+# p1 + p2 + p3 = <1009.5, 1023.1274>
+# p3 * p2 = <0, 0>
+# p3 / p2 / p1 / p2= <-2654728418.34585, -0.0>
+# p1 + p2 * p3 / p1 = <-242.8377, 24.1274>
+# p1 * p2 / p3 + p1 = <-997990.5, 24.1274>
+
+
+
 class Polygon:
     _point_list : List[Tuple[int, int]]
     def __init__(self, *point : Tuple[int, int]) -> None:
@@ -91,6 +130,14 @@ def main_two():
     print(f"Lower left: {rectangle.get_lower_left()}")
     print(f"Upper right: {rectangle.get_upper_right()}")
     rectangle.draw_polygon()
+
+# TASK TWO OUTPUT:
+# Which task would you like to run? Type 1 or 2: 2
+# This polygon has 5 sides.
+# Lower left: (-200, -100)
+# Upper right: (200, 100)
+
+# SEE .pdf FOR PICTURES
 
 if __name__ == "__main__":
     selection = int(input("Which task would you like to run? Type 1 or 2: "))
